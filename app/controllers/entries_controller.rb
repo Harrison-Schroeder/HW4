@@ -4,6 +4,7 @@ class EntriesController < ApplicationController
   end
 
   def create
+    flash["notice"] = "Hello, #{@user["username"]}!"
     @entry = Entry.new
     @entry["title"] = params["title"]
     @entry["description"] = params["description"]
