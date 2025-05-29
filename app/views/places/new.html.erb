@@ -1,5 +1,6 @@
-<h1>New Place</h1>
+<% if User.find_by({ "id" => session["user_id"] }) != nil %>
 
+<h1>New Place</h1>
 <form action="/places" method="post">
   <p>
     <label for="name_input">Name</label>
@@ -8,3 +9,8 @@
 
   <button>Save</button>
 </form>
+<% else %>
+  <p>
+    You must be <a href="/login">logged in</a> to add a new place.
+  </p>
+<% end %>

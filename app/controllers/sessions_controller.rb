@@ -4,29 +4,29 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # authenticate the user
-    # 1. try to find the user by their unique identifier
+   # Find the user by their unique email
     @user = User.find_by({ "email" => params["email"] })
-    # 2. if the user exists -> check if they know their password
+   # If the user exists, check if they know their password
     if @user != nil
-      # 3. if they know their password -> login is successful
+   # If they know their password then login is successful
       if BCrypt::Password.new(@user["password"]) == params["password"]
         session["user_id"] = @user["id"]
         flash["notice"] = "Welcome, #{@user["username"]}!"
         redirect_to "/places"
       else
-        # 4b. if the user doesn't know their password -> login fails
+    # If they don't know their password then login fails
         flash["notice"] = "Invalid Login"
         redirect_to "/login"
       end
     else
-      # 4a. if the user doesn't exist -> login fails
+    # If the user doesn't exist, then login fails
       flash["notice"] = "User Does Not Exist"
       redirect_to "/login"
     end
   end
 
   def destroy
+  #Log Out
   user = User.find_by(id: session["user_id"])
     if user != nil
     flash["notice"] = "Goodbye, #{user.username}!"

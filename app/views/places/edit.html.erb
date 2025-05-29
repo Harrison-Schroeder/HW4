@@ -1,0 +1,19 @@
+<% if User.find_by({ "id" => session["user_id"] }) != nil %>
+  <h1>Edit Place</h1>
+
+  <form action="/places/<%= @place["id"] %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+
+    <p>
+      <label for="name_input">Name</label>
+      <input type="text" name="name" value="<%= @place["name"] %>" id="name_input">
+    </p>
+
+        <button>Save</button>
+    <a href="/places/<%= @place["id"] %>">Cancel</a>
+  </form>
+<% else %>
+  <p>
+    You must be <a href="/login">logged in to edit places</a>.
+  </p>
+<% end %>
