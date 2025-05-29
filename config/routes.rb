@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Landing page (aka root route)
+  get("/", {:controller => "sessions", :action => "new"})
+  
   get("/", { :controller => "places", :action => "index" })
   resources "entries"
   resources "places"
@@ -8,7 +11,5 @@ Rails.application.routes.draw do
   get("/login", {:controller => "sessions", :action => "new"})
   get("/logout", {:controller => "sessions", :action => "destroy"})
   
-  # Landing page (aka root route)
-  get("/", {:controller => "sessions", :action => "new"})
 
 end

@@ -10,7 +10,7 @@
 <% end %>
 
 <p>
-  <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
+  <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-success">New Entry</a>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
   <form action="/places/<%= @place["id"] %>" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button>Delete Place</button>
+    <button type="submit" class="btn btn-danger">Delete Place</button>
   </form>
 
 <% else %>
