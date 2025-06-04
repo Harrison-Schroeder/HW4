@@ -2,7 +2,6 @@
 
 <% if User.find_by({ "id" => session["user_id"] }) != nil %>
 
-<div class = "col-12 col-md-6 col-lg-4 col-xl-3">
 <ul>
   <% for place in @places %>
     <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
